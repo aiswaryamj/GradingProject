@@ -68,51 +68,52 @@
         </div>
     </nav>
     <!-- main body starts-->
-
-    <form th:action="@{/Home}" th:object="${bottle}" method="post">
+<div class="container" style="text-align: center; justify-content: center" >
+    <form th:action="@{/AddBeverage}" th:object="${bottle}" method="post">
+        <h4>Add a bottle</h4>
         <div class="form-group">
-            <label>Enter the name of the item</label>
-
-            <input type="text" th:field="*{name}" class="form-control" placeholder="Example input">
+            <label>Enter Bottle Name:</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="Enter here" required>
             <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
 
         <div class="form-group">
-            <label>upload an image of item </label>
+            <label>Upload Bottle Image:</label>
             <!--            <input type="file" class"form-control-file" id="exampleFormControlFile1">-->
-            <input type="text" th:field="*{bottlePic}" class="form-control" placeholder="Example input">
+            <input type="text" th:field="*{bottlePic}" class="form-control" required>
+            <span class="text-danger" th:if="${#fields.hasErrors('bottlePic')}" th:errors="*{bottlePic}"></span>
         </div>
 
         <div class="form-group">
-            <label>Enter the price</label>
-            <input type="text" th:field="*{price}" class="form-control" placeholder="Another input">
+            <label>Enter Price:</label>
+            <input type="text" th:field="*{price}" class="form-control" required>
         </div>
         <div class="form-group">
-            <label> Please enter the in stock amount</label>
-            <input type="text" th:field="*{inStock}" class="form-control" placeholder="Example input">
+            <label>Enter In-Stock:</label>
+            <input type="text" th:field="*{inStock}" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for=>Enter the supplier</label>
-            <input type="text" th:field="*{supplier}" class="form-control" placeholder="Example input">
+            <label for=>Enter the Supplier:</label>
+            <input type="text" th:field="*{supplier}" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for=>volume</label>
-            <input type="text" th:field="*{volume}" class="form-control" placeholder="Example input">
-        </div>
-        <div class="form-group">
-            <label for=>volume percent</label>
-            <input type="text" th:field="*{volumePercent}" class="form-control" placeholder="Example input">
+            <label for=>Enter the Volume:</label>
+            <input type="text" th:field="*{volume}" class="form-control" required>
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" th:checked="*{isAlcoholic}" for="exampleCheck1">is alcoholic</label>
+            <label class="form-check-label" th:checked="*{isAlcoholic}" for="exampleCheck1">Is Alcoholic?</label>
+        </div>
+        <div class="form-group">
+            <label for=>Enter Volume Percent</label>
+            <input type="text" th:field="*{volumePercent}" class="form-control" required>
         </div>
 
         <div>
             <button class="btn btn-primary" type="submit">Button</button>
         </div>
     </form>
-
+</div>
 </div>
 </body>
 </html>

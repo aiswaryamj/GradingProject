@@ -1,13 +1,16 @@
 package store.drink.drink.Data;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.criterion.Order;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import store.drink.drink.Model.Bottle;
 import store.drink.drink.Model.Crate;
+import store.drink.drink.Model.Orders;
 import store.drink.drink.Repository.BottleRepository;
 import store.drink.drink.Repository.CrateRepository;
+import store.drink.drink.Repository.OrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +20,12 @@ import java.util.List;
 public class DemoData {
     private final BottleRepository bottleRepository;
     private final CrateRepository crateRepository;
+    private final OrderRepository orderRepository;
 
-    public DemoData(BottleRepository bottleRepository, CrateRepository crateRepository) {
+    public DemoData(BottleRepository bottleRepository, CrateRepository crateRepository, OrderRepository orderRepository) {
         this.bottleRepository = bottleRepository;
         this.crateRepository = crateRepository;
+        this.orderRepository = orderRepository;
     }
 
     @EventListener
@@ -28,6 +33,7 @@ public class DemoData {
 
         List<Bottle> bottleList = new ArrayList<>();
         List<Crate> crateList = new ArrayList<>();
+        List<Orders> orderList = new ArrayList<>();
 
         Bottle bottle1 = new Bottle(null,"Pepsi","https://thumbs.dreamstime.com/b/london-uk-june-bottle-pepsi-cola-soft-drink-white-american-multinational-food-beverage-company-background-94138787.jpg",1.5,false,0.0,2,"ABC Ltd",25);
         Bottle bottle2 = new Bottle(null,"CocaCola","https://5.imimg.com/data5/AF/ZN/JD/SELLER-49520187/2-25-l-coca-cola-cold-drink-500x500.jpg",2.5,false,0.0,3,"XYZ Ltd",17);
@@ -45,6 +51,18 @@ public class DemoData {
         crateList.add(crate1);
         crateList.add(crate2);
 
+        Orders order1 = new Orders(null,"23");
+        Orders order2 = new Orders(null,"34");
+        Orders order3 = new Orders(null,"45");
+        Orders order4 = new Orders(null,"12");
+
+        orderList.add(order1);
+        orderList.add(order2);
+        orderList.add(order3);
+        orderList.add(order4);
+
+
+        orderRepository.saveAll(orderList);
         bottleRepository.saveAll(bottleList);
         crateRepository.saveAll(crateList);
     }

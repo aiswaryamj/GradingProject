@@ -58,10 +58,9 @@ public class HomeController {
         OrderItem orderItem= new OrderItem(1L,"1",0,null,1);
         orderItem.setPrice(price);
         orderItem.setName(name);
-        model.addAttribute("bottle", orderItemRepository.save(orderItem));
-        model.addAttribute("crate", orderItemRepository.save(orderItem));
+        model.addAttribute("bottle | crate", orderItemRepository.save(orderItem));
         model.addAttribute("added", true);
-        return "Home";
+        return "redirect:/Home";
     }
 
 //    @PostMapping(value="/Home/crate")
@@ -90,20 +89,6 @@ public class HomeController {
 //        return "Home";
 //
 //    }
-
-    @PostMapping
-    public String postItem(@Valid Bottle bottle, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-            //model.addAttribute("AddBeverage", this.bottles);
-            model.addAttribute("AddBeverage", this.bottleRepository.findAll());
-            return "AddBeverage";
-        }
-//        bottle.setId("m" + (this.bottleRepository.count() + 1));
-        // bottle.setId("" + (this.bottles.size() + 1));
-        //  this.bottles.add(bottle);
-        this.bottleRepository.save(bottle);
-        return "redirect:/Home";
-    }
 
 //    @GetMapping
 //    public ModelAndView getBottles()
