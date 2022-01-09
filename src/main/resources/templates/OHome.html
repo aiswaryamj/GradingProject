@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DRINKS ONLINE</title>
+    <link rel="stylesheet" href="header.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        nav {
+  width: 100%;
+  opacity: 0.9;
+  background-color: #ccc;
+  display: flex;
+  justify-content: right;
+  height: 150px;
+}
+footer{
+    position: absolute;
+    width: 100%;
+    height :175px;
+    background-color:grey;
+    bottom : 0px;
+ }
+
+
+
+
+
+    </style>
+</head>
+<body style="background-color:#C0C0C0">
+<!-- Navbar ================================================== -->
+<div id="logoArea" class="navbar">
+    <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="Home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AddBeverage.html">Add</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="Orders.html">Orders</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- Header End====================================================================== -->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item">
+            <img class="d-block w-100"
+                 src="https://images.pexels.com/photos/2647933/pexels-photo-2647933.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                 alt="First slide" style="height:300px; width:500px">
+        </div>
+        <div class="carousel-item active">
+            <img class="d-block w-100"
+                 src="https://images.pexels.com/photos/4667030/pexels-photo-4667030.jpeg?auto=compress&cs=tinysrgb&dpr=4&w=500"
+                 alt="Second slide" style="height:300px; width:500px">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!main body-->
+<div>
+    <form method="GET" th:action="@{/Cart}">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" th:each="bottle:${AddBeverage}">
+                <div class="card h-100">
+                    <!--                    <img src="data:image/jpeg;base64,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"-->
+                    <!--                         class="card-img-top" alt="...">-->
+                    <div class="card-body">
+
+                        <h5 class="card-title" th:text="${bottle.name}"></h5>
+
+                        <a href="/Cart" class="btn btn-dark">Add to cart</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- Footer ================================================================== -->
+<div>
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-facebook-f"></i
+                ></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-twitter"></i
+                ></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-google"></i
+                ></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-instagram"></i
+                ></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-linkedin-in"></i
+                ></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-github"></i
+                ></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</div>
+<!-- Placed at the end of the document so the pages load faster ============================================= -->
+<script src="themes/js/jquery.js" type="text/javascript"></script>
+<script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="themes/js/google-code-prettify/prettify.js"></script>
+<script src="themes/js/jquery.lightbox-0.5.js"></script>
+
+
+</body>
+</html>
