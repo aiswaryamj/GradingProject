@@ -16,12 +16,6 @@ public class OrderController {
     public OrderController(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
-//    private final List<Orders> orders;
-
-//    public OrderController(List<Orders> orders) {
-//        this.orders = orders;
-//        this.orders.add(new Orders());
-//    }
 
     @GetMapping
     public String getOrders(Model model) {

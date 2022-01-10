@@ -41,6 +41,8 @@
     </style>
 </head>
 <body style="background-color:#C0C0C0" class="bg">
+
+
 <!-- Navbar ================================================== -->
 <div id="logoArea" class="navbar">
     <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
@@ -70,7 +72,7 @@
     <!-- main body starts-->
 <div class="container" style="text-align: center; justify-content: center" >
     <form th:action="@{/AddBeverage}" th:object="${bottle}" method="post">
-        <h4>Add a bottle</h4>
+        <h4>Add a Beverage</h4>
         <div class="form-group">
             <label>Enter Bottle Name:</label>
             <input type="text" th:field="*{name}" class="form-control" placeholder="Enter here" required>
@@ -79,7 +81,6 @@
 
         <div class="form-group">
             <label>Upload Bottle Image:</label>
-            <!--            <input type="file" class"form-control-file" id="exampleFormControlFile1">-->
             <input type="text" th:field="*{bottlePic}" class="form-control" required>
             <span class="text-danger" th:if="${#fields.hasErrors('bottlePic')}" th:errors="*{bottlePic}"></span>
         </div>
@@ -110,7 +111,7 @@
         </div>
 
         <div>
-            <button class="btn btn-primary" type="submit">Button</button>
+            <button class="btn btn-primary" >Button</button>
         </div>
     </form>
 </div>

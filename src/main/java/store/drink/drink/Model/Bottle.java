@@ -28,8 +28,6 @@ public class Bottle {
     private String name;
 
     @Pattern(regexp = "(http(s?):).*\\\\*.(?:jpg|gif|png)",message = "Must be a valid URL to a picture")
-//    @Pattern(regexp = "/(https:\\/\\/)([^\\s([\"<,>/]*)(\\/)[^\\s[\",><]*(.png|.jpg)(\\?[^\\s[\",><]*)?/",message = "Must be a valid URL to a picture")
-//    @Pattern(regexp = "(https?:.*\\.(?:png|jpg))")
     private String bottlePic;
 
     @Min(value = 1,message = "Value must be greater than Zero")

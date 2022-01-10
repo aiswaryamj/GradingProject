@@ -118,6 +118,9 @@
                         <input type="hidden" name="name" id="name" th:value="${bottle.name}" />
                         <input type="hidden" name="price" id="price" th:value="${bottle.price}" />
                         <button type="submit" name="submit" value="value" class="btn btn-primary">Add to Cart</button>
+<!--                        <div class="result_message" th:if="${added}" style="text-align: center">-->
+<!--                            <h3 class="text-success">Added to cart ✔</h3>-->
+<!--                        </div>-->
                     </form>
                     </td>
                 </tr>
@@ -160,6 +163,9 @@
                             <input type="hidden" name="name" id="crateName" th:value="${crate.name}" />
                             <input type="hidden" name="price" id ="cratePrice" th:value="${crate.price}" />
                             <button type="submit" name="submit" value="value" class="btn btn-primary">Add to Cart</button>
+<!--                            <div class="result_message" th:if="${added}" style="text-align: center">-->
+<!--                                <h3 class="text-success">Added to cart ✔</h3>-->
+<!--                            </div>-->
                         </form>
                     </td>
                 </tr>
