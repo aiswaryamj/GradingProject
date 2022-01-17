@@ -6,7 +6,7 @@ import store.drink.drink.Model.User;
 import store.drink.drink.Repository.UserRepository;
 
 @RestController
-//@RequestMapping(value = "/Login")
+@RequestMapping(value = "/Login")
 public class LoginController {
 
 private final UserRepository userRepository;

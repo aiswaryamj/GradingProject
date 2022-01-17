@@ -22,10 +22,10 @@ public class HomeController {
     private final CrateRepository crateRepository;
 
     @Autowired
-    public HomeController(OrderItemRepository orderItemRepository, BottleRepository bottleRepository, CrateRepository crateRepository) {
+    public HomeController(OrderItemRepository orderItemRepository, BottleRepository bottleRepository, CrateRepository crateRepository1) {
         this.orderItemRepository = orderItemRepository;
         this.bottleRepository = bottleRepository;
-        this.crateRepository = crateRepository;
+        this.crateRepository = crateRepository1;
     }
 
     @GetMapping("/Home")
@@ -37,8 +37,8 @@ public class HomeController {
 
     @PostMapping(value="/Home")
     public String addDrinksToCart(Model model, @RequestParam("name") String name,
-                             @RequestParam("price") int price) {
-        OrderItem orderItem= new OrderItem(1L,"1",0,null,1);
+                             @RequestParam("price") int price, @RequestParam("quantity") int quantity) {
+        OrderItem orderItem= new OrderItem(1L,"1",0,null,quantity);
         orderItem.setPrice(price);
         orderItem.setName(name);
         model.addAttribute("bottle | crate", orderItemRepository.save(orderItem));

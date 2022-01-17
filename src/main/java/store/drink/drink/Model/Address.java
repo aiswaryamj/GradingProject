@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -23,16 +24,16 @@ public class Address {
     private Long id;
 
     @NotNull(message = "Street name must be set")
-    @NotEmpty(message = "This field cannot be empty")
+    @NotEmpty(message = "Street cannot be empty")
     private String street;
 
     @NotNull(message = "Street number must be set")
-    @NotEmpty(message = "This field cannot be empty")
+    @NotEmpty(message = "Street number cannot be empty")
     private String number;
 
     @NotNull(message = "Postal code must be set")
-    @NotEmpty(message = "This field cannot be empty")
-    @Size(min = '5', max='5',message = "Please enter 5 digit postal code")
+    @NotEmpty(message = "Postal code cannot be empty")
+    @Length(min = 5, max= 5,message = "Please enter 5 digit postal code")
     private String postalCode;
 
 }

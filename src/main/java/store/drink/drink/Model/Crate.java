@@ -23,20 +23,20 @@ public class Crate {
     private Long id;
 
     @NotNull(message = "Name must be set")
-    @NotEmpty(message = "This field cannot be empty")
+    @NotEmpty(message = "Name cannot be empty")
     @Pattern(regexp = "[A-Za-z0-9]+", message = "Name can have only letters and digits")
     private String name;
 
     @Pattern(regexp = "(http(s?):).*\\\\*.(?:jpg|gif|png)",message = "Must be a valid URL to a picture")
     private String cratePic;
 
-    @Min(value = 1, message = "Value must be greater than Zero")
+    @Min(value = 1, message = "Number of bottles must be greater than Zero")
     private int noOfBottles;
 
-    @Min(value = 1,message = "Value must be greater than Zero")
+    @Min(value = 1,message = "Price must be greater than Zero")
     private int price;
 
-    @Min(value = 0,message = "Value must be greater than or equal to Zero")
+    @Min(value = 0,message = "Stock value must be greater than or equal to Zero")
     private int inStock;
 
 }

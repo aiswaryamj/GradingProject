@@ -23,14 +23,14 @@ public class Bottle {
     private Long id;
 
     @NotNull(message = "Name must be set")
-    @NotEmpty(message = "This field cannot be empty")
+    @NotEmpty(message = "Name cannot be empty")
     @Pattern(regexp = "[A-Za-z0-9]+", message = "Name can have only letters and digits")
     private String name;
 
     @Pattern(regexp = "(http(s?):).*\\\\*.(?:jpg|gif|png)",message = "Must be a valid URL to a picture")
     private String bottlePic;
 
-    @Min(value = 1,message = "Value must be greater than Zero")
+    @Min(value = 1,message = "Volume must be greater than Zero")
     private double volume;
 
     private Boolean isAlcoholic;
@@ -38,14 +38,14 @@ public class Bottle {
 //    @Min(value = 1,message = "Value must be greater than Zero") //if isAlcoholic is true
     private double volumePercent;
 
-    @Min(value = 1,message = "Value must be greater than Zero")
+    @Min(value = 1,message = "Price must be greater than Zero")
     private int price;
 
     @NotNull(message = "Supplier name must be set")
-    @NotEmpty(message = "This field cannot be empty")
+    @NotEmpty(message = "Supplier name cannot be empty")
     private String supplier;
 
-    @Min(value = 0,message = "Value must be greater than or equal to Zero")
+    @Min(value = 0,message = "Stock value must be greater than or equal to Zero")
     private int inStock;
 
 }
