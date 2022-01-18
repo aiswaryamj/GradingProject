@@ -5,12 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import store.drink.drink.Model.Address;
-import store.drink.drink.Model.Crate;
 import store.drink.drink.Model.Orders;
 import store.drink.drink.Repository.AddressRepository;
 import store.drink.drink.Repository.OrderItemRepository;
 import store.drink.drink.Repository.OrderRepository;
-
 import javax.validation.Valid;
 
 @Controller
@@ -26,13 +24,12 @@ public class CartController {
         this.orderRepository = orderRepository;
     }
 
-
     @GetMapping
     public String getOrderItems(Model model) {
         model.addAttribute("OrderItems", orderItemRepository.findAll());
         model.addAttribute("addAddress", addressRepository.findAll());
         model.addAttribute("address", new Address());
-//      model.addAttribute("totalPrice",orderItemRepository.getTotalPrice());
+//        model.addAttribute("totalPrice", orderItemRepository.getTotalPrice());
         return "Cart";
     }
 
@@ -50,46 +47,10 @@ public class CartController {
         return "Cart";
     }
 
-//    @PostMapping
-//    public String addAddress(@Valid Address address, Errors errors, Model model) {
-//        if (errors.hasErrors()) {
-//            model.addAttribute("address", this.addressRepository.findAll());
-//            return "Cart";
-//        }
-//        this.addressRepository.save(address);
-//        return "redirect:/Cart";
-//    }
-//
-//    @GetMapping("/Cart")
-//    public String getItem(Model model) {
-//        model.addAttribute("address",this.addressRepository.findAll());
-//        model.addAttribute("address",new Address());
-//        return "/Cart";
-//
-//    }
-
-
-//    @PostMapping
-//    public String addAddress(Model model, @RequestParam("street") String street,
-//                                  @RequestParam("number") String number, @RequestParam("postalCode") String postalCode) {
-//        Address address = new Address();
-//        address.setStreet(street);
-//        address.setNumber(number);
-//        address.setPostalCode(postalCode);
-//        model.addAttribute("address",addressRepository.save(address));
-////        addressRepository.save(address);
-//        return "redirect:/Cart";
-//    }
-
-//    @PostMapping("/Cart")
-//    public String addAddress(@Valid @RequestBody Address address, Errors errors, Model model) {
-//        if (errors.hasErrors()) {
-//
-//            model.addAttribute("address", this.addressRepository.save(address));
-//            return "Cart";
-//        }
-//        this.addressRepository.save(address);
-//        return "redirect:/Orders";
-//    }
+    @GetMapping("delete/{id}")
+    public String deleteAnItem(@PathVariable Long id) {
+        orderItemRepository.deleteById(id);
+        return "Cart";
+    }
 
 }

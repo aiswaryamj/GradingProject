@@ -21,6 +21,5 @@ public class OrderController {
     public String getOrders(Model model) {
         model.addAttribute("Orders", orderRepository.findAll());
         return "Orders";
-
     }
 }

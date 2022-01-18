@@ -50,7 +50,8 @@
 
 
         .quantity {
-            display: inline-block; }
+            display: inline-block;
+        }
 
         .quantity .input-text.qty {
             width: 35px;
@@ -65,7 +66,8 @@
             text-align: left;
             position: relative;
             white-space: nowrap;
-            vertical-align: top; }
+            vertical-align: top;
+        }
 
         .quantity.buttons_added input {
             display: inline-block;
@@ -80,29 +82,33 @@
             height: 41px;
             background-color: #ffffff;
             border: 1px solid #efefef;
-            cursor:pointer;}
+            cursor: pointer;
+        }
 
         .quantity.buttons_added .minus {
-            border-right: 0; }
+            border-right: 0;
+        }
 
         .quantity.buttons_added .plus {
-            border-left: 0; }
+            border-left: 0;
+        }
 
         .quantity.buttons_added .minus:hover,
         .quantity.buttons_added .plus:hover {
-            background: #eeeeee; }
+            background: #eeeeee;
+        }
 
         .quantity input::-webkit-outer-spin-button,
         .quantity input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             -moz-appearance: none;
-            margin: 0; }
+            margin: 0;
+        }
 
         .quantity.buttons_added .minus:focus,
         .quantity.buttons_added .plus:focus {
-            outline: none; }
-
-
+            outline: none;
+        }
 
 
     </style>
@@ -120,7 +126,9 @@
             <!-- <span class="text-uppercase font-weight-bold">Company</span>-->
         </a>
 
-        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
@@ -136,105 +144,104 @@
 
 <!--main body-->
 <div class="bg">
-<div class="container">
-    <h5 style="font-family: 'Monotype Corsiva',serif; text-align: center; color:#00008B; font-size: 75px">Let's have a drink.. Prost!!</h5>
-    <div class="result_message" th:if="${added}" style="text-align: center">
-        <h3 class="text-success">Added to cart ✔</h3>
-    </div>
-    <h4>Available as bottles</h4>
-    <div class="row">
-        <div class="col-12">
-            <table class="table table-bordered" style="background-color: rgba(245, 245, 245, 0.4);text-align: center; vertical-align:middle" >
-                <thead>
-                <tr>
-                    <th scope="col" style="width: fit-content">Drink</th>
-                    <th scope="col">Volume(in Litres)</th>
-                    <th scope="col">Price(€)</th>
-                    <th scope="col">In Stock</th>
-                    <th scope="col">Click to buy</th>
-                </tr>
-                </thead>
-                <tbody th:each="bottle:${bottles}">
-                <tr style="height: 50px">
-                    <td style="width: 35%">
-                        <div class="card" style="align-items: center; background-color: rgba( 245, 245, 245, 0.4)">
-                            <img th:src="${bottle.bottlePic}" alt="Avatar" style="width:20%" src="">
+    <div class="container">
+        <h5 style="font-family: 'Monotype Corsiva',serif; text-align: center; color:#00008B; font-size: 75px">Let's have
+            a drink.. Prost!!</h5>
+        <h5 class="alert alert-success" role="alert" th:text="${success}" th:if="${success}"
+            style="text-align: center; background-color: rgba( 245, 245, 245, 0.4)"></h5>
+        <h4>Available as bottles</h4>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered"
+                       style="background-color: rgba(245, 245, 245, 0.4);text-align: center; vertical-align:middle">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: fit-content">Drink</th>
+                        <th scope="col">Volume(in Litres)</th>
+                        <th scope="col">Price(€)</th>
+                        <th scope="col">In Stock</th>
+                        <th scope="col">Click to buy</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="bottle:${bottles}">
+                    <tr style="height: 50px">
+                        <td style="width: 35%">
+                            <div class="card" style="align-items: center; background-color: rgba( 245, 245, 245, 0.4)">
+                                <img th:src="${bottle.bottlePic}" alt="Avatar" style="width:20%" src="">
                                 <h4 th:text="${bottle.name}" style="align-content: center"></h4>
-                        </div>
-                    </td>
-                    <td th:text="${bottle.volume}" style="font-size: 30px"></td>
-                    <td th:text="${bottle.price}" style="font-size: 30px"></td>
-                    <td th:text="${bottle.inStock}" style="font-size: 30px"></td>
-                    <td>
-                    <form method="POST" th:action="@{/Home}">
-                        <input type="hidden" name="name" id="name" th:value="${bottle.name}" />
-                        <input type="hidden" name="price" id="price" th:value="${bottle.price}" />
+                            </div>
+                        </td>
+                        <td th:text="${bottle.volume}" style="font-size: 30px"></td>
+                        <td th:text="${bottle.price}" style="font-size: 30px"></td>
+                        <td th:text="${bottle.inStock}" style="font-size: 30px"></td>
+                        <td>
+                            <form method="POST" th:action="@{/Home}">
+                                <input type="hidden" name="name" id="name" th:value="${bottle.name}"/>
+                                <input type="hidden" name="price" id="price" th:value="${bottle.price}"/>
 
+                                <label for="bottleQuantity"></label>
+                                <select name="quantity" id="bottleQuantity" required>
+                                    <option th:each="i : ${#numbers.sequence(1, 4)}" th:value="${i}" th:text="${i}">
+                                    </option>
+                                </select>
 
-                        <div class="quantity buttons_added">
-                            <input type="button" value="-" class="minus">
-                            <input type="number" step="1" min="1" max="4" name="quantity" value="1" title="Qty"
-                                   class="input-text qty text" size="4" pattern="" inputmode="${quantity}">
-                            <input type="button" value="+" class="plus">
-                        </div>
-
-
-                        <button type="submit" name="submit" value="value" class="btn btn-primary">Add to Cart</button>
-<!--                        <div class="result_message" th:if="${added}" style="text-align: center">-->
-<!--                            <h3 class="text-success">Added to cart ✔</h3>-->
-<!--                        </div>-->
-                    </form>
-                    </td>
-                </tr>
-                </tbody>
-<!--                <div class="result_message" th:if="${added}">-->
-<!--                    <h3 class="text-success">Added to cart ✔</h3>-->
-<!--                </div>-->
-            </table>
+                                <button type="submit" name="submit" value="value" class="btn btn-primary">Add to Cart
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <h4>Available as crates</h4>
-    <div class="row">
-        <div class="col-12">
-            <table class="table table-bordered" style="background-color: rgba(245, 245, 245, 0.4);text-align: center; vertical-align:middle" >
-                <thead>
-                <tr>
-                    <th scope="col" style="width: fit-content">Drink</th>
-                    <th scope="col">Number of bottles</th>
-                    <th scope="col">Price(€)</th>
-                    <th scope="col">In Stock</th>
-                    <th scope="col">Click to buy</th>
-                </tr>
-                </thead>
-                <tbody th:each="crate:${crates}">
-                <tr>
-                    <td style="width: 35%">
-                        <div class="card" style="align-items: center; background-color: rgba( 245, 245, 245, 0.4)">
-                            <img th:src="${crate.cratePic}" alt="Avatar" style="width:20%">
-                            <h4 th:text="${crate.name}" style="align-content: center"></h4>
-                        </div>
-                    </td>
-                    <td th:text="${crate.noOfBottles}" style="font-size: 30px"></td>
-                    <td th:text="${crate.price}" style="font-size: 30px"></td>
-                    <td th:text="${crate.inStock}" style="font-size: 30px"></td>
-                    <td>
-                        <form method="POST" th:action="@{/Home}">
-                            <input type="hidden" name="name" id="crateName" th:value="${crate.name}" />
-                            <input type="hidden" name="price" id ="cratePrice" th:value="${crate.price}" />
-                            <button type="submit" name="submit" value="value" class="btn btn-primary">Add to Cart</button>
-<!--                            <div class="result_message" th:if="${added}" style="text-align: center">-->
-<!--                                <h3 class="text-success">Added to cart ✔</h3>-->
-<!--                            </div>-->
-                        </form>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="container">
+        <h4>Available as crates</h4>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered"
+                       style="background-color: rgba(245, 245, 245, 0.4);text-align: center; vertical-align:middle">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: fit-content">Drink</th>
+                        <th scope="col">Number of bottles</th>
+                        <th scope="col">Price(€)</th>
+                        <th scope="col">In Stock</th>
+                        <th scope="col">Click to buy</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="crate:${crates}">
+                    <tr>
+                        <td style="width: 35%">
+                            <div class="card" style="align-items: center; background-color: rgba( 245, 245, 245, 0.4)">
+                                <img th:src="${crate.cratePic}" alt="Avatar" style="width:20%">
+                                <h4 th:text="${crate.name}" style="align-content: center"></h4>
+                            </div>
+                        </td>
+                        <td th:text="${crate.noOfBottles}" style="font-size: 30px"></td>
+                        <td th:text="${crate.price}" style="font-size: 30px"></td>
+                        <td th:text="${crate.inStock}" style="font-size: 30px"></td>
+                        <td>
+                            <form method="POST" th:action="@{/Home}">
+                                <input type="hidden" name="name" id="crateName" th:value="${crate.name}"/>
+                                <input type="hidden" name="price" id="cratePrice" th:value="${crate.price}"/>
+
+                                <label for="crateQuantity"></label>
+                                <select name="quantity" id="crateQuantity" required>
+                                    <option th:each="i : ${#numbers.sequence(1, 4)}" th:value="${i}" th:text="${i}">
+                                    </option>
+                                </select>
+
+                                <button type="submit" name="submit" value="value" class="btn btn-primary">Add to Cart
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 </div>
 <!-- Placed at the end of the document so the pages load faster ============================================= -->

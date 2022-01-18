@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import store.drink.drink.Model.OrderItem;
 import store.drink.drink.Repository.BottleRepository;
 import store.drink.drink.Repository.CrateRepository;
 import store.drink.drink.Repository.OrderItemRepository;
-
 
 @Slf4j
 @Controller
@@ -37,12 +37,12 @@ public class HomeController {
 
     @PostMapping(value="/Home")
     public String addDrinksToCart(Model model, @RequestParam("name") String name,
-                             @RequestParam("price") int price, @RequestParam("quantity") int quantity) {
+                             @RequestParam("price") int price, @RequestParam("quantity") int quantity, RedirectAttributes redirAttrs) {
         OrderItem orderItem= new OrderItem(1L,"1",0,null,quantity);
         orderItem.setPrice(price);
         orderItem.setName(name);
         model.addAttribute("bottle | crate", orderItemRepository.save(orderItem));
-        model.addAttribute("added", true);
+        redirAttrs.addFlashAttribute("success", "Item added to cart ✔");
         return "redirect:/Home";
     }
 

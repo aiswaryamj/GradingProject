@@ -80,24 +80,30 @@
 
 <!--main body-->
 <div class="container" style="text-align: center; justify-content: center">
-<h3 style="text-align: center">Items in your Cart</h3>
-<table class="table table-bordered"
-       style="background-color: rgba(245, 245, 245, 0.4);text-align: center; vertical-align:middle">
-    <thead>
-    <tr>
-        <th>Order Item</th>
-        <th>Price(€)</th>
-    </tr>
-    </thead>
-    <tr th:each="orderItem:${OrderItems}">
-        <td th:text="${orderItem.name}"></td>
-        <td th:text="${orderItem.price}"></td>
-    </tr>
-    <tr>
-        <td>Total Price(€)</td>
-        <td th:text="50"></td>
-    </tr>
-</table>
+    <h3 style="text-align: center">Items in your Cart</h3>
+    <table class="table table-bordered"
+           style="background-color: rgba(245, 245, 245, 0.4);text-align: center; vertical-align:middle">
+        <thead>
+        <tr>
+            <th>Order Item</th>
+            <th>Quantity</th>
+            <th>Price/item(€)</th>
+            <th>Remove</th>
+        </tr>
+        </thead>
+        <tr th:each="orderItem:${OrderItems}">
+            <td th:text="${orderItem.name}"></td>
+            <td th:text="${orderItem.quantity}"></td>
+            <td th:text="${orderItem.price}"></td>
+            <td>
+                <a th:href="@{/Cart/delete/{id}(id=${orderItem.id})}"><i class="fa fa-remove"></i></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">Total Price(€)</td>
+            <td colspan="2" th:text="50"></td>
+        </tr>
+    </table>
 
     <form action="#" th:action="@{/Cart}" th:object="${address}" method="Post" style="width: 30%">
 
@@ -129,41 +135,6 @@
 
 </div>
 
-<!--    <form action="#" th:action="@{/Cart}" th:object="${address}" method="POST">-->
-<!--        <div class="form-group">-->
-<!--            <label style="font-size:25px">Please enter your address:</label>-->
-<!--        </div>-->
-<!--        <table>-->
-<!--            <tr class="form-group">-->
-<!--                <label>Street:</label>-->
-<!--                <input type="text" th:field="*{street}" class="form-control" placeholder="Enter here" required>-->
-<!--                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{street}"></span>-->
-<!--            </tr>-->
-<!--            <tr class="form-group">-->
-<!--                <label>Number:</label>-->
-<!--                <input type="text" th:field="*{number}" class="form-control" placeholder="Enter here" required>-->
-<!--                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{number}"></span>-->
-<!--            </tr>-->
-<!--            <tr class="form-group">-->
-<!--                <label>Postal Code:</label>-->
-<!--                <input type="text" th:field="*{postalCode}" class="form-control" placeholder="Enter here" required>-->
-<!--                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{postalCode}"></span>-->
-<!--            </tr>-->
-<!--        </table>-->
-<!--        <button type="submit" name="submit" value="value" class="btn btn-primary">Confirm Order</button>-->
-<!--    </form>-->
-
-
-<!--                    <form>-->
-
-<!--    <a href="Home" class="btn btn-large"><i class="icon-arrow-left"></i>Continue Shopping </a>-->
-<!--    <br>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 <!-- MainBody End ============================= -->
 
 <!-- Placed at the end of the document so the pages load faster ============================================= -->
