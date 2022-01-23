@@ -5,14 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import store.drink.drink.Model.Address;
+import store.drink.drink.Model.OrderItem;
 import store.drink.drink.Model.Orders;
 import store.drink.drink.Repository.AddressRepository;
 import store.drink.drink.Repository.OrderItemRepository;
 import store.drink.drink.Repository.OrderRepository;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping(value = "/Cart")
+@RequestMapping
 public class CartController {
     private final OrderItemRepository orderItemRepository;
     private final AddressRepository addressRepository;
@@ -24,30 +26,33 @@ public class CartController {
         this.orderRepository = orderRepository;
     }
 
-    @GetMapping
+    @GetMapping(value = "/Cart")
     public String getOrderItems(Model model) {
         model.addAttribute("OrderItems", orderItemRepository.findAll());
         model.addAttribute("addAddress", addressRepository.findAll());
         model.addAttribute("address", new Address());
+//        model.addAttribute("totalPrice",orderRepository.findAll());
 //        model.addAttribute("totalPrice", orderItemRepository.getTotalPrice());
         return "Cart";
     }
 
-    @PostMapping
+    @PostMapping(value = "/Cart")
     public String deleteOrderItemsAndCreateNewOrder(@Valid Address address, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("addAddress", addressRepository.findAll());
-            return "Cart";
         }
+        else{
         addressRepository.save(address);
         Orders order = new Orders();
-        order.setPrice("50");
+//        order.setOrderItems((List<OrderItem>) orderItemRepository.findAll());
+        order.setTotalPrice("50");
         orderRepository.save(order);
         orderItemRepository.deleteAll();
+        }
         return "Cart";
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("Cart/{id}")
     public String deleteAnItem(@PathVariable Long id) {
         orderItemRepository.deleteById(id);
         return "Cart";

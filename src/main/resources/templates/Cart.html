@@ -96,19 +96,18 @@
             <td th:text="${orderItem.quantity}"></td>
             <td th:text="${orderItem.price}"></td>
             <td>
-                <a th:href="@{/Cart/delete/{id}(id=${orderItem.id})}"><i class="fa fa-remove"></i></a>
+                <a th:href="@{/Cart/{id}(id=${orderItem.id})}"><i class="fa fa-remove"></i></a>
             </td>
         </tr>
         <tr>
             <td colspan="2">Total Price(€)</td>
-            <td colspan="2" th:text="50"></td>
+            <td colspan="2" th:field="totalPrice" th:text="${#aggregates.sum(OrderItems.![price * quantity])}" id="totalPrice" th:name="totalPrice"></td>
         </tr>
     </table>
 
     <form action="#" th:action="@{/Cart}" th:object="${address}" method="Post" style="width: 30%">
 
         <h4>Enter Shipping Address:</h4>
-
         <div class="form-group">
             <label>Enter Street Name:</label>
             <input type="text" th:field="*{street}" class="form-control" placeholder="Enter here">

@@ -1,5 +1,6 @@
 package store.drink.drink.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,9 @@ public class OrderItem {
     private int quantity;
 
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name="id", nullable=false)
+//////    @JoinColumn(foreignKey = @ForeignKey(name = "item_id"), name = "item_id",nullable = false)
+//    @JoinColumn(name="item_id", nullable = false)
+//    @JsonIgnore
 //    private Orders orders;
 
 }

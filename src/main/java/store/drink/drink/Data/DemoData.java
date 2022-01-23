@@ -6,6 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import store.drink.drink.Model.Bottle;
 import store.drink.drink.Model.Crate;
+import store.drink.drink.Model.OrderItem;
 import store.drink.drink.Model.Orders;
 import store.drink.drink.Repository.BottleRepository;
 import store.drink.drink.Repository.CrateRepository;
@@ -33,6 +34,7 @@ public class DemoData {
         List<Bottle> bottleList = new ArrayList<>();
         List<Crate> crateList = new ArrayList<>();
         List<Orders> orderList = new ArrayList<>();
+        List<OrderItem> orderItemsList = new ArrayList<>();
 
         Bottle bottle1 = new Bottle(null,"Pepsi","https://thumbs.dreamstime.com/b/london-uk-june-bottle-pepsi-cola-soft-drink-white-american-multinational-food-beverage-company-background-94138787.jpg",1.5,false,0.0,2,"ABC Ltd",25);
         Bottle bottle2 = new Bottle(null,"CocaCola","https://5.imimg.com/data5/AF/ZN/JD/SELLER-49520187/2-25-l-coca-cola-cold-drink-500x500.jpg",2.5,false,0.0,3,"XYZ Ltd",17);
@@ -50,15 +52,15 @@ public class DemoData {
         crateList.add(crate1);
         crateList.add(crate2);
 
-        Orders order1 = new Orders(null,"23");
-        Orders order2 = new Orders(null,"34");
-        Orders order3 = new Orders(null,"45");
-        Orders order4 = new Orders(null,"12");
+//        Orders order1 = new Orders(null,"23",orderItemsList);
+//        Orders order2 = new Orders(null,"34",orderItemsList);
+//        Orders order3 = new Orders(null,"45",orderItemsList);
+//        Orders order4 = new Orders(null,"12",orderItemsList);
 
-        orderList.add(order1);
-        orderList.add(order2);
-        orderList.add(order3);
-        orderList.add(order4);
+//        orderList.add(order1);
+//        orderList.add(order2);
+//        orderList.add(order3);
+//        orderList.add(order4);
 
 
         orderRepository.saveAll(orderList);

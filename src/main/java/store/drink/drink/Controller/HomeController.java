@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import store.drink.drink.Model.OrderItem;
+import store.drink.drink.Model.Orders;
 import store.drink.drink.Repository.BottleRepository;
 import store.drink.drink.Repository.CrateRepository;
 import store.drink.drink.Repository.OrderItemRepository;
@@ -38,9 +39,12 @@ public class HomeController {
     @PostMapping(value="/Home")
     public String addDrinksToCart(Model model, @RequestParam("name") String name,
                              @RequestParam("price") int price, @RequestParam("quantity") int quantity, RedirectAttributes redirAttrs) {
-        OrderItem orderItem= new OrderItem(1L,"1",0,null,quantity);
+        OrderItem orderItem = new OrderItem();
+//        Orders order = new Orders();
         orderItem.setPrice(price);
         orderItem.setName(name);
+        orderItem.setQuantity(quantity);
+//        orderItem.setOrders(order);
         model.addAttribute("bottle | crate", orderItemRepository.save(orderItem));
         redirAttrs.addFlashAttribute("success", "Item added to cart ✔");
         return "redirect:/Home";
