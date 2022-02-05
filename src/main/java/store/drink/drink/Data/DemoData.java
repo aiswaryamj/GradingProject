@@ -33,8 +33,8 @@ public class DemoData {
 
         List<Bottle> bottleList = new ArrayList<>();
         List<Crate> crateList = new ArrayList<>();
-        List<Orders> orderList = new ArrayList<>();
-        List<OrderItem> orderItemsList = new ArrayList<>();
+//        List<Orders> orderList = new ArrayList<>();
+//        List<OrderItem> orderItemsList = new ArrayList<>();
 
         Bottle bottle1 = new Bottle(null,"Pepsi","https://thumbs.dreamstime.com/b/london-uk-june-bottle-pepsi-cola-soft-drink-white-american-multinational-food-beverage-company-background-94138787.jpg",1.5,false,0.0,2,"ABC Ltd",25);
         Bottle bottle2 = new Bottle(null,"CocaCola","https://5.imimg.com/data5/AF/ZN/JD/SELLER-49520187/2-25-l-coca-cola-cold-drink-500x500.jpg",2.5,false,0.0,3,"XYZ Ltd",17);
@@ -63,7 +63,7 @@ public class DemoData {
 //        orderList.add(order4);
 
 
-        orderRepository.saveAll(orderList);
+//        orderRepository.saveAll(orderList);
         bottleRepository.saveAll(bottleList);
         crateRepository.saveAll(crateList);
     }

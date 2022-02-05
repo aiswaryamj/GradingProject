@@ -1,5 +1,6 @@
 package store.drink.drink.Controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping
+@Slf4j
 public class CartController {
     private final OrderItemRepository orderItemRepository;
     private final AddressRepository addressRepository;
@@ -29,17 +31,19 @@ public class CartController {
     @GetMapping(value = "/Cart")
     public String getOrderItems(Model model) {
         model.addAttribute("OrderItems", orderItemRepository.findAll());
-        model.addAttribute("addAddress", addressRepository.findAll());
+        model.addAttribute("addresses", addressRepository.findAll());
         model.addAttribute("address", new Address());
-//        model.addAttribute("totalPrice",orderRepository.findAll());
-//        model.addAttribute("totalPrice", orderItemRepository.getTotalPrice());
+//        List<OrderItem> cartItemsList= (List<OrderItem>) orderItemRepository.findAll();
+//        if(cartItemsList.isEmpty()){
+//            return "redirect:/Cart?cartEmpty";
+//        }
         return "Cart";
     }
 
     @PostMapping(value = "/Cart")
     public String deleteOrderItemsAndCreateNewOrder(@Valid Address address, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("addAddress", addressRepository.findAll());
+            model.addAttribute("addresses", addressRepository.findAll());
         }
         else{
         addressRepository.save(address);
@@ -49,13 +53,13 @@ public class CartController {
         orderRepository.save(order);
         orderItemRepository.deleteAll();
         }
-        return "Cart";
+        return "redirect:/Cart";
     }
 
     @GetMapping("Cart/{id}")
     public String deleteAnItem(@PathVariable Long id) {
         orderItemRepository.deleteById(id);
-        return "Cart";
+        return "redirect:/Cart";
     }
 
 }
